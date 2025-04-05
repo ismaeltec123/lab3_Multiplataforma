@@ -1,0 +1,70 @@
+
+class Usuario {
+  String nombre;
+  String email;
+  String contrasena;
+  
+  Usuario(this.nombre, this.email, this.contrasena){
+    
+  }
+  
+}
+
+mixin Autentificacion {
+  void iniciarSesion(){
+    print("Se inicia sesion");
+  }
+}
+
+class UsuarioAutentificado extends Usuario with Autentificacion{
+  
+  UsuarioAutentificado(String nombre , String email , String contrasena) : super(nombre,email,contrasena){
+    
+  }
+    
+  void mostrarDatos(){
+    print("AAA");
+  }
+    
+} 
+
+void main() {
+  var usuarioAutenticado = UsuarioAutentificado("Ismael","Ismael@gmail.com","abcd");
+  usuarioAutenticado.iniciarSesion();
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+class Votante {
+  String nombre;
+  int edad;
+  String haVotado;
+  
+  Votante(this.nombre, this.edad, this.haVotado){
+    
+  }
+  
+}
+
+mixin ValidacionVoto {
+  void validarVoto(int edad){
+    if (edad < 18) {
+      print("Su voto no es valido");
+    }
+    else if (edad>=18){
+      print("Su voto ha sido validado");
+    }
+  }
+}
+
+class VotanteValidado extends Votante with ValidacionVoto{
+  
+  VotanteValidado(String nombre, int edad, String haVotado): super(nombre,edad,haVotado){
+    
+  }
+    
+}
+void main() {
+  var votanteValido = VotanteValidado("Ismael", 20, "NO");
+  votanteValido.validarVoto(votanteValido.edad);
+}
+
